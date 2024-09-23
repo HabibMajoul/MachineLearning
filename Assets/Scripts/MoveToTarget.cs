@@ -113,6 +113,12 @@ public class MoveToTarget : Agent
             nextCheckpoint = checkpoints[++checkpoint];
             Debug.Log("Checkpoint reached!");
         }
+        if (other.gameObject.CompareTag("FinalReward"))
+        {
+            other.gameObject.SetActive(false);
+            AddReward(150f);
+            Debug.Log("Final checkpoint reached!");
+        }
         if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("obstacle"))
         {
             AddReward(-10);
