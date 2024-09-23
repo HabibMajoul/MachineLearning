@@ -85,15 +85,19 @@ public class MoveToTarget : Agent
         moveX = actions.ContinuousActions[0];
         moveZ = actions.ContinuousActions[1];
         
-        AddReward(-0.0001f);
+        AddReward(-0.000001f);
 
         //Adds reward the closer they get to checkpoint
         if (distanceToCheckpoint > Vector3.Distance(transform.localPosition, nextCheckpoint.localPosition)){
-            AddReward(0.01f);
+            AddReward(0.00000125f);
+        }
+        else
+        {
+            AddReward(-0.000002f);
         }
         distanceToCheckpoint = Vector3.Distance(transform.localPosition, nextCheckpoint.localPosition);
 
-        if (yLevel > transform.localPosition.y) AddReward(-0.5f); 
+        if (yLevel > transform.localPosition.y) AddReward(-0.1f); 
         yLevel = transform.localPosition.y;
     }
 
@@ -109,25 +113,25 @@ public class MoveToTarget : Agent
         if (other.gameObject.CompareTag("Reward"))
         {
             other.gameObject.SetActive(false);
-            AddReward(50f);
+            AddReward(20f);
             nextCheckpoint = checkpoints[++checkpoint];
             Debug.Log("Checkpoint reached!");
         }
         if (other.gameObject.CompareTag("FinalReward"))
         {
             other.gameObject.SetActive(false);
-            AddReward(150f);
+            AddReward(50f);
             Debug.Log("Final checkpoint reached!");
         }
         if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("obstacle"))
         {
-            AddReward(-10);
+            AddReward(-10f);
             characterAnimationManager.characterController.enabled = false;
             EndEpisode();
         }
         if (other.gameObject.CompareTag("Wall2"))
         {
-            AddReward(-20);
+            AddReward(-15);
             characterAnimationManager.characterController.enabled = false;
             EndEpisode();
         }
