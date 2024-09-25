@@ -125,7 +125,9 @@ public class MoveToTarget : Agent
         {
             other.gameObject.SetActive(false);
             AddReward(50f * distanceRewardMultiplier);
+            characterAnimationManager.characterController.enabled = false;
             Debug.Log("Final checkpoint reached!");
+            EndEpisode();
         }
         if (other.gameObject.CompareTag("Wall"))
         {
@@ -136,12 +138,6 @@ public class MoveToTarget : Agent
         if (other.gameObject.CompareTag("obstacle"))
         {
             AddReward(-10f);
-            characterAnimationManager.characterController.enabled = false;
-            EndEpisode();
-        }
-        if (other.gameObject.CompareTag("Wall2"))
-        {
-            AddReward(-70);
             characterAnimationManager.characterController.enabled = false;
             EndEpisode();
         }
