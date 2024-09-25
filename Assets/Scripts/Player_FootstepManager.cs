@@ -23,7 +23,7 @@ public class Player_FootstepManager : MonoBehaviour
     void UpdateFootsteps()
     {
         float baseMoveSpeed = 1.75f;
-        float baseStepInterval = 7.5f;
+        float baseStepInterval = 2.56f;
 
         stepInterval = baseStepInterval * (baseMoveSpeed / characterAnimationManager.moveSpeed);
 
