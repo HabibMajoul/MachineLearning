@@ -85,7 +85,7 @@ public class MoveToTarget : Agent
 
         //Adds reward the closer they get to checkpoint
         if (distanceToCheckpoint > Vector3.Distance(transform.localPosition, nextCheckpoint.localPosition)){
-            AddReward(0.000005f * distanceRewardMultiplier);
+            AddReward(0.00000225f * distanceRewardMultiplier);
         }
         else
         {
@@ -99,7 +99,7 @@ public class MoveToTarget : Agent
         }
         if (yLevel < transform.localPosition.y)
         {
-            AddReward(0.09f);
+            AddReward(0.1f);
         }
         yLevel = transform.localPosition.y;
     }
